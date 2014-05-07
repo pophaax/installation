@@ -8,7 +8,7 @@
 #
 
 	# Installation directory
-	INSTALLATION_PATH=setsail
+	INSTALLATION_DIR=setsail
 
 	# Modules to be downloaded
 	MODULES=(
@@ -40,13 +40,13 @@ else
 	ROOT_PATH=.
 fi
 
-printf "\nCreating directory \033[33m$ROOT_PATH/$INSTALLATION_PATH/\033[39m\n"
-mkdir $INSTALLATION_PATH
-cd $INSTALLATION_PATH
+printf "\nCreating directory \033[33m$ROOT_PATH/$INSTALLATION_DIR/\033[39m\n"
+mkdir $INSTALLATION_DIR
+cd $INSTALLATION_DIR
 
 for MODULE in ${MODULES[@]}
 do
-	printf "\nDownloading $MODULE module into \033[33m$ROOT_PATH/$INSTALLATION_PATH/$MODULE/\033[39m\n"
+	printf "\nDownloading $MODULE module into \033[33m$ROOT_PATH/$INSTALLATION_DIR/$MODULE/\033[39m\n"
 	git clone https://github.com/pophaax/$MODULE
 done
 
