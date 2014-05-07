@@ -1,5 +1,33 @@
 #!/bin/bash
 
+# ****************************************************************
+#
+#		SCRIPT SETTINGS
+#
+# ----------------------------------------------------------------
+#
+
+	# Installation directory
+	INSTALLATION_PATH=setsail
+
+	# Modules to be downloaded
+	MODULE[0]=sailingrobot
+	MODULE[1]=waypointlist
+	MODULE[2]=ruddercommand
+	MODULE[3]=sailcommand
+	MODULE[4]=dbhandler
+	MODULE[5]=windsensor
+	MODULE[6]=servocontroller
+	MODULE[7]=gps
+	MODULE[8]=coursecalculation
+
+	# Last module index.. used in download loop
+	MODULES=8
+
+#
+# ****************************************************************
+
+
 printf "\n**********************************\n"
 printf "*                                *\n"
 printf "*   \033[32mSailing robot installation\033[39m   *\n"
@@ -11,37 +39,14 @@ if [ "$RESULT" == "installation" ]; then
 	cd ..
 fi
 
-printf "\nCreating directory \033[33m../setsail\033[39m\n"
-mkdir setsail
-cd setsail
-#printf "                                                          "
-#printf " [\033[32mDONE\033[39m]\n\n"
+printf "\nCreating directory \033[33m../$INSTALLATION_PATH\033[39m\n"
+mkdir $INSTALLATION_PATH
+cd $INSTALLATION_PATH
 
-printf "\nDownloading sailingrobot module into \033[33m../setsail/sailingrobot\033[39m\n"
-git clone https://github.com/pophaax/sailingrobot
-
-printf "\nDownloading waypointlist module into \033[33m../setsail/waypointlist\033[39m\n"
-git clone https://github.com/pophaax/waypointlist
-
-printf "\nDownloading ruddercommand module into \033[33m../setsail/ruddercommand\033[39m\n"
-git clone https://github.com/pophaax/ruddercommand
-
-printf "\nDownloading sailcommand module into \033[33m../setsail/sailcommand\033[39m\n"
-git clone https://github.com/pophaax/sailcommand
-
-printf "\nDownloading dbhandler module into \033[33m../setsail/dbhandler\033[39m\n"
-git clone https://github.com/pophaax/dbhandler
-
-printf "\nDownloading windsensor module into \033[33m../setsail/windsensor\033[39m\n"
-git clone https://github.com/pophaax/windsensor
-
-printf "\nDownloading servocontroller module into \033[33m../setsail/servocontroller\033[39m\n"
-git clone https://github.com/pophaax/servocontroller
-
-printf "\nDownloading gps module into \033[33m../setsail/gps\033[39m\n"
-git clone https://github.com/pophaax/gps
-
-printf "\nDownloading coursecalculation module into \033[33m../setsail/coursecalculation\033[39m\n"
-git clone https://github.com/pophaax/coursecalculation
+for i in `seq 0 $MODULES`
+do
+	printf "\nDownloading ${MODULE[$i]} module into \033[33m../$INSTALLATION_PATH/${MODULE[$i]}\033[39m\n"
+	git clone https://github.com/pophaax/${MODULE[$i]}
+done
 
 printf "\n\033[33mFinished!\033[39m\n\n"
