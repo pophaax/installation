@@ -38,18 +38,18 @@ RESULT=${PWD##*/}
 
 if [ "$RESULT" == "installation" ]; then
 	cd ..
-	PATH=..
+	ROOT_PATH=..
 else
-	PATH=.
+	ROOT_PATH=.
 fi
 
-printf "\nCreating directory \033[33m$PATH/$INSTALLATION_PATH/\033[39m\n"
+printf "\nCreating directory \033[33m$ROOT_PATH/$INSTALLATION_PATH/\033[39m\n"
 mkdir $INSTALLATION_PATH
 cd $INSTALLATION_PATH
 
 for i in `seq 0 $MODULES`
 do
-	printf "\nDownloading ${MODULE[$i]} module into \033[33m$PATH/$INSTALLATION_PATH/${MODULE[$i]}/\033[39m\n"
+	printf "\nDownloading ${MODULE[$i]} module into \033[33m$ROOT_PATH/$INSTALLATION_PATH/${MODULE[$i]}/\033[39m\n"
 	git clone https://github.com/pophaax/${MODULE[$i]}
 done
 
