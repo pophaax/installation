@@ -8,11 +8,13 @@
 #
 
 	# Installation directory
-	INSTALLATION_DIR=setsail
-
-	# Modules to be downloaded
-	MODULES=(
-	 	sailingrobot
+	INSTALLATION_PATH=/root/
+	
+	# Main repository
+	REPO_MAIN=sailingrobot
+	
+	# Module repositories to be downloaded
+	REPO_MODULES=(
 		waypointlist 
 		ruddercommand 
 		sailcommand 
@@ -31,22 +33,13 @@ printf "\n**********************************\n*                                *
 printf "*   \033[32mSailing robot installation\033[39m   *\n"
 printf "*                                *\n**********************************\n"
 
-RESULT=${PWD##*/}
+printf "\nDownloading $REPO_MAIN into \033[33m$INSTALLATION_PATH/$REPO_MAIN/\033[39m\n"
+git clone https://github.com/pophaax/$REPO_MAIN
+cd $REPO_MAIN
 
-if [ "$RESULT" == "installation" ]; then
-	cd ..
-	ROOT_PATH=..
-else
-	ROOT_PATH=.
-fi
-
-printf "\nCreating directory \033[33m$ROOT_PATH/$INSTALLATION_DIR/\033[39m\n"
-mkdir $INSTALLATION_DIR
-cd $INSTALLATION_DIR
-
-for MODULE in ${MODULES[@]}
+for MODULE in ${REPO_MODULES[@]}
 do
-	printf "\nDownloading $MODULE module into \033[33m$ROOT_PATH/$INSTALLATION_DIR/$MODULE/\033[39m\n"
+	printf "\nDownloading $MODULE module into \033[33m$INSTALLATION_PATH/$REPO_MAIN/$MODULE/\033[39m\n"
 	git clone https://github.com/pophaax/$MODULE
 done
 
