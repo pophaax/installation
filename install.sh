@@ -33,13 +33,14 @@ printf "\n**********************************\n*                                *
 printf "*   \033[32mSailing robot installation\033[39m   *\n"
 printf "*                                *\n**********************************\n"
 
-printf "\nDownloading $REPO_MAIN into \033[33m$INSTALLATION_PATH/$REPO_MAIN/\033[39m\n"
+cd $INSTALLATION_PATH
+printf "\nDownloading $REPO_MAIN into \033[33m$INSTALLATION_PATH$REPO_MAIN/\033[39m\n"
 git clone https://github.com/pophaax/$REPO_MAIN
 cd $REPO_MAIN
 
 for MODULE in ${REPO_MODULES[@]}
 do
-	printf "\nDownloading $MODULE module into \033[33m$INSTALLATION_PATH/$REPO_MAIN/$MODULE/\033[39m\n"
+	printf "\nDownloading $MODULE module into \033[33m$INSTALLATION_PATH$REPO_MAIN/$MODULE/\033[39m\n"
 	git clone https://github.com/pophaax/$MODULE
 done
 
