@@ -8,7 +8,7 @@
 #
 
 	# Installation directory
-	INSTALLATION_PATH=/root/
+	INSTALLATION_PATH=~/
 	
 	# Main repository
 	REPO_MAIN=sailingrobot
@@ -33,6 +33,8 @@ printf "\n**********************************\n*                                *
 printf "*   \033[32mSailing robot installation\033[39m   *\n"
 printf "*                                *\n**********************************\n"
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 cd $INSTALLATION_PATH
 printf "\nDownloading $REPO_MAIN into \033[33m$INSTALLATION_PATH$REPO_MAIN/\033[39m\n"
 git clone https://github.com/pophaax/$REPO_MAIN
@@ -43,5 +45,8 @@ do
 	printf "\nDownloading $MODULE module into \033[33m$INSTALLATION_PATH$REPO_MAIN/$MODULE/\033[39m\n"
 	git clone https://github.com/pophaax/$MODULE
 done
+
+printf "\nCreating database in \033[33m$INSTALLATION_PATH$REPO_MAIN/\033[39m\n"
+sqlite3 asr.db < $DIR/createtables.sql
 
 printf "\n\033[33mFinished!\033[39m\n\n"
