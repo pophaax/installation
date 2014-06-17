@@ -23,6 +23,7 @@
 		servocontroller 
 		gps 
 		coursecalculation
+		httpsync
 	)
 
 #

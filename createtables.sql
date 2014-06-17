@@ -1,12 +1,77 @@
-PRAGMA foreign_keys=OFF;                                                                                                                                     
+PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS configs (id INTEGER PRIMARY KEY AUTOINCREMENT,sc_commandclosereach INTEGER,sc_commandbeamreach INTEGER,sc_commandbroadreach INTEGER,sc_commandrunning INTEGER,sc_anglebeamreach INTEGER,sc_anglebroadreach INTEGER,sc_anglerunnning INTEGER,rc_commandextreme INTEGER,rc_commandmedium INTEGER,rc_commandsmall INTEGER,rc_commandmidships INTEGER,rc_anglemedium INTEGER,rc_anglesmall INTEGER,rc_anglemidships INTEGER,cc_tackangle INTEGER,cc_sectorangle INTEGER,ws_sensormodel VARCHAR,ws_portname VARCHAR,ws_baudrate INTEGER,mc_portname VARCHAR,rs_channel INTEGER,rs_speed INTEGER,rs_acceleration INTEGER,rs_limitmin INTEGER,rs_limitmax INTEGER,ss_channel INTEGER,ss_speed INTEGER,ss_acceleration INTEGER,ss_limitmin INTEGER,ss_limitmax INTEGER,gps_portname VARCHAR,gps_connectionname VARCHAR);                                                                                                                                                 
-INSERT OR REPLACE INTO "configs" VALUES(1,7424,6600,6200,5824,120,80,40,7616,7000,6500,5984,60,30,10,45,5,'CV7','/dev/ttyAMA0',4800,'/dev/ttyACM0',0,0,0,1088,1904,1,0,0,1456,1856,'/dev/ttyUSB0','localhost');                                                                                                                     
-CREATE TABLE IF NOT EXISTS datalogs (id INTEGER PRIMARY KEY AUTOINCREMENT,logtime TIMESTAMP,sc_command INTEGER,rc_command INTEGER,cc_dtw INTEGER,cc_btw INTEGER,cc_cts INTEGER,cc_tack INTEGER,ws_buffersize INTEGER,ws_sensormodel VARCHAR,ws_direction INTEGER,ws_speed INTEGER,ws_temperature INTEGER,rs_position INTEGER,ss_position INTEGER,gps_timestamp VARCHAR,gps_latitude DOUBLE,gps_longitude DOUBLE,gps_altitude DOUBLE,gps_speed DOUBLE,gps_heading DOUBLE,gps_mode INTEGER,gps_satellites INTEGER);                                                                                                                                                 
-CREATE TABLE IF NOT EXISTS waypoints (id INTEGER PRIMARY KEY AUTOINCREMENT,routeid INTEGER,latitude DOUBLE,longitude DOUBLE);                                              
-INSERT OR REPLACE INTO "waypoints" VALUES(1,1,60.7672,19.8239);                                                                                                         
-CREATE TABLE IF NOT EXISTS errorlogs (id INTEGER PRIMARY KEY AUTOINCREMENT,logtime TIMESTAMP,error VARCHAR);                                                               
-DELETE FROM sqlite_sequence;                                                                                                                                 
-INSERT INTO "sqlite_sequence" VALUES('configs',1);                                                                                                           
-INSERT INTO "sqlite_sequence" VALUES('waypoints',1);                                                                                                         
+CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
+	sc_cmd_clse INTEGER,
+	sc_cmd_beam INTEGER,
+	sc_cmd_brd INTEGER,
+	sc_cmd_run INTEGER,
+	sc_ang_beam INTEGER,
+	sc_ang_brd INTEGER,
+	sc_ang_run INTEGER,
+	rc_cmd_xtrm INTEGER,
+	rc_cmd_med INTEGER,
+	rc_cmd_sml INTEGER,
+	rc_cmd_mid INTEGER,
+	rc_ang_med INTEGER,
+	rc_ang_sml INTEGER,
+	rc_ang_mid INTEGER,
+	cc_ang_tack INTEGER,
+	cc_ang_sect INTEGER,
+	ws_modl VARCHAR,
+	ws_chan INTEGER,
+	ws_port VARCHAR,
+	ws_baud INTEGER,
+	ws_buff INTEGER,
+	mc_port VARCHAR,
+	rs_chan INTEGER,
+	rs_spd INTEGER,
+	rs_acc INTEGER,
+	ss_chan INTEGER,
+	ss_spd INTEGER,
+	ss_acc INTEGER
+);
+INSERT INTO "configs" VALUES(1,7424,6600,6200,5824,120,80,40,7616,7000,6500,5984,60,30,10,45,5,'CV7',5,'/dev/ttyAMA0',4800,10,'/dev/ttyACM0',0,0,0,1,0,0);
+CREATE TABLE waypoints (id INTEGER PRIMARY KEY, -- no autoincrement to ensure a correct order
+	lat DOUBLE,
+	lon DOUBLE
+);
+CREATE TABLE datalogs (id INTEGER PRIMARY KEY, -- remove log after sync to minimize db size
+	gps_time TIMESTAMP,
+	gps_lat DOUBLE,
+	gps_lon DOUBLE,
+	gps_spd DOUBLE,
+	gps_head DOUBLE,
+	gps_sat INTEGER,
+	sc_cmd INTEGER,
+	rc_cmd INTEGER,
+	ss_pos INTEGER,
+	rs_pos INTEGER,
+	cc_dtw DOUBLE,
+	cc_btw DOUBLE,
+	cc_cts DOUBLE,
+	cc_tack INTEGER,
+	ws_dir INTEGER,
+	ws_spd DOUBLE,
+	ws_tmp INTEGER,
+	wpt_cur INTEGER
+);
+CREATE TABLE messages (id INTEGER PRIMARY KEY AUTOINCREMENT, -- remove log after sync to minimize db size
+	gps_time TIMESTAMP,
+	type VARCHAR,
+	msg VARCHAR,
+	log_id INTEGER				-- FK
+);
+CREATE TABLE server (id INTEGER PRIMARY KEY AUTOINCREMENT,
+	boat_id VARCHAR,	-- ex: boat01
+	boat_pwd VARCHAR,
+	srv_addr VARCHAR
+);
+CREATE TABLE state (id INTEGER PRIMARY KEY AUTOINCREMENT,
+	cfg_rev VARCHAR,
+	rte_rev VARCHAR,
+	wpt_rev VARCHAR,
+	wpt_cur INTEGER
+);
+DELETE FROM sqlite_sequence;
+INSERT INTO "sqlite_sequence" VALUES('configs',1);
 COMMIT;
