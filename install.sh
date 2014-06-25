@@ -26,28 +26,114 @@
 		httpsync
 	)
 
+	# Terminal colors
+	CLR_HEAD='\033[34m'
+	CLR_INFO='\033[35m'
+	CLR_ASK='\033[36m'
+	CLR_OPT='\033[37m'
+	CLR_DIR='\033[37m'
+	CLR_OK='\033[32m'
+	CLR_ERR='\033[31m'
+	CLR_END='\033[39m'
+
 #
 # ****************************************************************
 
-
-printf "\n**********************************\n*                                *\n"
-printf "*   \033[32mSailing robot installation\033[39m   *\n"
-printf "*                                *\n**********************************\n"
+printf "\n$CLR_HEAD"
+printf "\n     *****************************************************"
+printf "\n     *                                                   *"
+printf "\n     *           .:          .:: ::    .:::::::          *"
+printf "\n     *          .: ::      .::    .::   ::    .::        *"
+printf "\n     *         .:  .::      .::         ::    .::        *"
+printf "\n     *        .::   .::       .::       : .::            *"
+printf "\n     *       .:::::: .::         .::    ::  .::          *"
+printf "\n     *      .::       .::  .::    .::   ::    .::        *"
+printf "\n     *     .::         .::   .:: ::    .::      .::      *"
+printf "\n     *                                                   *"
+printf "\n     *             Sailing robot installation            *"
+printf "\n     *                                                   *"
+printf "\n     *****************************************************"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-cd $INSTALLATION_PATH
-printf "\nDownloading $REPO_MAIN into \033[33m$INSTALLATION_PATH$REPO_MAIN/\033[39m\n"
-git clone https://github.com/pophaax/$REPO_MAIN
-cd $REPO_MAIN
+print_result()
+{
+	if $1
+	then 
+		printf "$CLR_OK"
+		printf "Success\n"
+	else 
+		printf "$CLR_ERR"
+		printf "Failed\n"
+	fi
+}
 
-for MODULE in ${REPO_MODULES[@]}
+opt_install ()
+{
+	cd $INSTALLATION_PATH
+	printf "$CLR_INFO\nDownloading $REPO_MAIN into $CLR_DIR$INSTALLATION_PATH$REPO_MAIN/$CLR_INFO\n"
+	print_result "git clone https://github.com/pophaax/$REPO_MAIN"
+	cd $REPO_MAIN
+	for MODULE in ${REPO_MODULES[@]}
+	do
+		printf "$CLR_INFO\nDownloading $MODULE module into $CLR_DIR$INSTALLATION_PATH$REPO_MAIN/$MODULE/$CLR_INFO\n"
+		print_result "git clone https://github.com/pophaax/$MODULE"
+	done
+
+	printf "$CLR_ASK\nDo you wish to create a database?\n$CLR_OPT"
+	select option in "Yes" "No"
+	do
+		case $option in
+		    Yes ) printf "$CLR_INFO\nCreating database in $CLR_DIR$INSTALLATION_PATH$REPO_MAIN/$CLR_INFO\n"
+					if sqlite3 asr.db < $DIR/createtables.sql;
+					then print_result true; else print_result false; break; fi
+					printf "$CLR_ASK\nServer settings:\n$CLR_OPT"
+					read -p "Boat name: " BOATID
+					read -p "Boat password: " BOATPWD
+					read -p "Server address: " SRVADDR
+					printf "$CLR_INFO"
+					if sqlite3 asr.db "INSERT INTO server(id, boat_id, boat_pwd, srv_addr) VALUES('1', '$BOATID', '$BOATPWD', '$SRVADDR')";
+					then print_result true; else print_result false; fi
+					break;;
+			No ) printf "$CLR_INFO\nSkipping database\n"
+					break;;
+		esac
+	done
+}
+
+opt_update ()
+{
+	cd $INSTALLATION_PATH$REPO_MAIN
+	printf "$CLR_INFO\nUpdating $REPO_MAIN into $CLR_DIR$INSTALLATION_PATH$REPO_MAIN/$CLR_INFO\n"
+	print_result "git pull"
+	
+	for MODULE in ${REPO_MODULES[@]}
+	do
+		cd $MODULE
+		printf "$CLR_INFO\nUpdating $MODULE module into $CLR_DIR$INSTALLATION_PATH$REPO_MAIN/$MODULE/$CLR_INFO\n"
+		print_result "git pull"
+		cd ..
+	done
+}
+
+opt_remove ()
+{
+	cd $INSTALLATION_PATH
+	rm -rf $REPO_MAIN
+	printf "$CLR_INFO\nFiles removed\n"
+}
+
+printf "\n$CLR_ASK\nWhat do you want to do?\n$CLR_OPT"
+select option in "Install" "Update" "Remove" "Quit"
 do
-	printf "\nDownloading $MODULE module into \033[33m$INSTALLATION_PATH$REPO_MAIN/$MODULE/\033[39m\n"
-	git clone https://github.com/pophaax/$MODULE
+	case $option in
+	    Install ) opt_install; break;;
+	    Update ) opt_update; break;;
+		Remove ) opt_remove; break;;
+		Quit ) break;;
+	esac
 done
 
-printf "\nCreating database in \033[33m$INSTALLATION_PATH$REPO_MAIN/\033[39m\n"
-sqlite3 asr.db < $DIR/createtables.sql
+printf "$CLR_END\n"
 
-printf "\n\033[33mFinished!\033[39m\n\n"
+
