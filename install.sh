@@ -8,7 +8,7 @@
 #
 
 	# Installation directory
-	INSTALLATION_PATH=~/dev/
+	INSTALLATION_PATH=~/
 	
 	# Main repository
 	REPO_MAIN=sailingrobot
