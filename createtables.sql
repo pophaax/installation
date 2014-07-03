@@ -68,9 +68,7 @@ CREATE TABLE server (id INTEGER PRIMARY KEY AUTOINCREMENT,
 );
 CREATE TABLE state (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	cfg_rev VARCHAR,
-	rte_rev VARCHAR,
-	wpt_rev VARCHAR,
-	wpt_cur INTEGER
+	rte_rev VARCHAR
 );
 DELETE FROM sqlite_sequence;
 INSERT INTO "sqlite_sequence" VALUES('configs',1);
