@@ -15,7 +15,6 @@
 	
 	# Module repositories to be downloaded
 	REPO_MODULES=(
-		waypointlist 
 		ruddercommand 
 		sailcommand 
 		dbhandler 
