@@ -18,7 +18,7 @@
 		ruddercommand 
 		sailcommand 
 		dbhandler 
-		windsensor 
+		CV7 
 		servocontroller 
 		gps 
 		coursecalculation
