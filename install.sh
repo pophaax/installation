@@ -23,6 +23,8 @@
 		gps 
 		coursecalculation
 		httpsync
+		testsuit
+		Compass
 	)
 
 	# Terminal colors
