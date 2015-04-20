@@ -54,6 +54,9 @@ CREATE TABLE datalogs (id INTEGER PRIMARY KEY, -- remove log after sync to minim
 	ws_spd DOUBLE,
 	ws_tmp INTEGER,
 	wpt_cur INTEGER
+	cps_head INTEGER,
+	cps_pitch INTEGER,
+	cps_roll INTEGER
 );
 CREATE TABLE messages (id INTEGER PRIMARY KEY AUTOINCREMENT, -- remove log after sync to minimize db size
 	gps_time TIMESTAMP,
