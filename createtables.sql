@@ -53,7 +53,7 @@ CREATE TABLE datalogs (id INTEGER PRIMARY KEY, -- remove log after sync to minim
 	ws_dir INTEGER,
 	ws_spd DOUBLE,
 	ws_tmp INTEGER,
-	wpt_cur INTEGER
+	wpt_cur INTEGER,
 	cps_head INTEGER,
 	cps_pitch INTEGER,
 	cps_roll INTEGER
