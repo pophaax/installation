@@ -25,6 +25,7 @@
 		httpsync
 		testsuit
 		Compass
+		thread
 	)
 
 	# Terminal colors
