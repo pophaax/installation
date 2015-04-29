@@ -26,6 +26,7 @@
 		testsuit
 		Compass
 		thread
+		xmlparser
 	)
 
 	# Terminal colors
