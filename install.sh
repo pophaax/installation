@@ -27,6 +27,7 @@
 		Compass
 		thread
 		xmlparser
+		models
 	)
 
 	# Terminal colors
