@@ -28,6 +28,7 @@
 		thread
 		xmlparser
 		models
+		logger	
 	)
 
 	# Terminal colors
