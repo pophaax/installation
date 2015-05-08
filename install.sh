@@ -25,6 +25,10 @@
 		httpsync
 		testsuit
 		Compass
+		thread
+		xmlparser
+		models
+		logger	
 	)
 
 	# Terminal colors
