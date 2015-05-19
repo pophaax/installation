@@ -23,7 +23,7 @@
 		gps 
 		coursecalculation
 		httpsync
-		testsuit
+		tests
 		Compass
 		thread
 		xmlparser
