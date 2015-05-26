@@ -98,7 +98,9 @@ opt_install ()
 					read -p "Server address: " SRVADDR
 					printf "$CLR_INFO"
 					if sqlite3 asr.db "INSERT INTO server(id, boat_id, boat_pwd, srv_addr) VALUES('1', '$BOATID', '$BOATPWD', '$SRVADDR')";
-					then print_result true; else print_result false; fi
+						then print_result true;
+						cp asr.db test_asr.db
+					else print_result false; fi
 					break;;
 			No ) printf "$CLR_INFO\nSkipping database\n"
 					break;;
