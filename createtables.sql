@@ -31,9 +31,10 @@ CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	ss_acc INTEGER,
 	xb_send INTEGER,
 	xb_recv INTEGER,
-	flag_heading_compass INTEGER
+	flag_heading_compass INTEGER,
+	sr_loop_time DOUBLE
 );
-INSERT INTO "configs" VALUES(1,7424,6600,6200,5824,120,80,40,7616,7000,6500,5984,60,30,10,45,5,'CV7',5,'/dev/ttyAMA0',4800,10,'/dev/ttyACM0',4,0,0,3,0,0,1,1,1);
+INSERT INTO "configs" VALUES(1,7424,6600,6200,5824,120,80,40,7616,7000,6500,5984,60,30,10,45,5,'CV7',5,'/dev/ttyAMA0',4800,10,'/dev/ttyACM0',4,0,0,3,0,0,1,1,1,0.2);
 CREATE TABLE waypoints (id INTEGER PRIMARY KEY, -- no autoincrement to ensure a correct order
 	lat DOUBLE,
 	lon DOUBLE,
