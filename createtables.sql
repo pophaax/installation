@@ -36,7 +36,8 @@ CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 INSERT INTO "configs" VALUES(1,7424,6600,6200,5824,120,80,40,7616,7000,6500,5984,60,30,10,45,5,'CV7',5,'/dev/ttyAMA0',4800,10,'/dev/ttyACM0',4,0,0,3,0,0,1,1,1);
 CREATE TABLE waypoints (id INTEGER PRIMARY KEY, -- no autoincrement to ensure a correct order
 	lat DOUBLE,
-	lon DOUBLE
+	lon DOUBLE,
+	radius INTEGER
 );
 CREATE TABLE datalogs (id INTEGER PRIMARY KEY, -- remove log after sync to minimize db size
 	gps_time TIMESTAMP,
