@@ -1,24 +1,17 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
+
+DROP TABLE IF EXISTS "configs";
 CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	sc_cmd_clse INTEGER,
-	sc_cmd_beam INTEGER,
-	sc_cmd_brd INTEGER,
 	sc_cmd_run INTEGER,
-	sc_ang_beam INTEGER,
-	sc_ang_brd INTEGER,
-	sc_ang_run INTEGER,
+
 	rc_cmd_xtrm INTEGER,
-	rc_cmd_med INTEGER,
-	rc_cmd_sml INTEGER,
 	rc_cmd_mid INTEGER,
-	rc_ang_med INTEGER,
-	rc_ang_sml INTEGER,
-	rc_ang_mid INTEGER,
+
 	cc_ang_tack INTEGER,
 	cc_ang_sect INTEGER,
-	ws_modl VARCHAR,
-	ws_chan INTEGER,
+
 	ws_port VARCHAR,
 	ws_baud INTEGER,
 	ws_buff INTEGER,
@@ -34,12 +27,16 @@ CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	flag_heading_compass INTEGER,
 	sr_loop_time DOUBLE
 );
-INSERT INTO "configs" VALUES(1,7424,6600,6200,5824,120,80,40,7616,7000,6500,5984,60,30,10,45,5,'CV7',5,'/dev/ttyAMA0',4800,10,'/dev/ttyACM0',4,0,0,3,0,0,1,1,1,0.2);
+INSERT INTO "configs" VALUES(1, 7424,5824, 7000,5520, 45,5, '/dev/ttyAMA0',4800,10,'/dev/ttyACM0',4,0,0,3,0,0,1,1,1,0.2);
+
+DROP TABLE IF EXISTS "waypoints";
 CREATE TABLE waypoints (id INTEGER PRIMARY KEY, -- no autoincrement to ensure a correct order
 	lat DOUBLE,
 	lon DOUBLE,
 	radius INTEGER
 );
+
+DROP TABLE IF EXISTS "datalogs";
 CREATE TABLE datalogs (id INTEGER PRIMARY KEY, -- remove log after sync to minimize db size
 	gps_time TIMESTAMP,
 	gps_lat DOUBLE,
@@ -63,21 +60,42 @@ CREATE TABLE datalogs (id INTEGER PRIMARY KEY, -- remove log after sync to minim
 	cps_pitch INTEGER,
 	cps_roll INTEGER
 );
+
+-- only used in DBHandler::getLogs commented code, remove?
+DROP TABLE IF EXISTS "messages";
 CREATE TABLE messages (id INTEGER PRIMARY KEY AUTOINCREMENT, -- remove log after sync to minimize db size
 	gps_time TIMESTAMP,
 	type VARCHAR,
 	msg VARCHAR,
 	log_id INTEGER				-- FK
 );
+
+-- HTTPSync
+DROP TABLE IF EXISTS "server";
 CREATE TABLE server (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	boat_id VARCHAR,	-- ex: boat01
 	boat_pwd VARCHAR,
 	srv_addr VARCHAR
 );
+
+-- HTTPSync
+DROP TABLE IF EXISTS "state";
 CREATE TABLE state (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	cfg_rev VARCHAR,
 	rte_rev VARCHAR
 );
+
+DROP TABLE IF EXISTS "mock";
+CREATE TABLE mock (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	GPS BOOLEAN,
+	Windsensor BOOLEAN,
+	Compass BOOLEAN,
+	Position BOOLEAN,
+	Maestro BOOLEAN
+);
+INSERT INTO "mock" VALUES(1,0,0,0,0,0);
+
 DELETE FROM sqlite_sequence;
 INSERT INTO "sqlite_sequence" VALUES('configs',1);
 COMMIT;
