@@ -48,13 +48,16 @@ CREATE TABLE datalogs (id INTEGER PRIMARY KEY, -- remove log after sync to minim
 	rc_cmd INTEGER,
 	ss_pos INTEGER,
 	rs_pos INTEGER,
+
 	cc_dtw DOUBLE,
 	cc_btw DOUBLE,
 	cc_cts DOUBLE,
-	cc_tack INTEGER,
+	cc_tack BOOLEAN,
+	cc_goingStarboard BOOLEAN,
+
 	ws_dir INTEGER,
 	ws_spd DOUBLE,
-	ws_tmp INTEGER,
+	ws_tmp DOUBLE,
 	wpt_cur INTEGER,
 	cps_head INTEGER,
 	cps_pitch INTEGER,
