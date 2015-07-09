@@ -14,7 +14,6 @@ CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 
 	ws_port VARCHAR,
 	ws_baud INTEGER,
-	ws_buff INTEGER,
 	mc_port VARCHAR,
 	rs_chan INTEGER,
 	rs_spd INTEGER,
@@ -27,7 +26,15 @@ CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	flag_heading_compass INTEGER,
 	sr_loop_time DOUBLE
 );
-INSERT INTO "configs" VALUES(1, 4400,5300, 7000,5520, 45,5, '/dev/ttyAMA0',4800,10,'/dev/ttyACM0',4,0,0,3,0,0,1,1,1,0.2);
+INSERT INTO "configs" VALUES(1, 4400,5300, 7000,5520, 45,5, '/dev/ttyAMA0',4800,'/dev/ttyACM0',4,0,0,3,0,0,1,1,1,0.5);
+
+DROP TABLE IF EXISTS "buffer_configs";
+CREATE TABLE buffer_configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
+	compass INTEGER,
+	true_wind INTEGER,
+	windsensor INTEGER
+);
+INSERT INTO "buffer_configs" VALUES(1,5,100,10);
 
 DROP TABLE IF EXISTS "waypoints";
 CREATE TABLE waypoints (id INTEGER PRIMARY KEY, -- no autoincrement to ensure a correct order
