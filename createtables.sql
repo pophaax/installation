@@ -24,9 +24,11 @@ CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	xb_send INTEGER,
 	xb_recv INTEGER,
 	flag_heading_compass INTEGER,
-	sr_loop_time DOUBLE
+	sr_loop_time DOUBLE,
+	scanning BOOLEAN
 );
-INSERT INTO "configs" VALUES(1, 4400,5300, 7000,5520, 45,5, '/dev/ttyAMA0',4800,'/dev/ttyACM0',4,0,0,3,0,0,1,1,1,0.5);
+INSERT INTO "configs" VALUES(1, 4400,5300, 7000,5520, 45,5,
+	'/dev/ttyAMA0',4800,'/dev/ttyACM0',4,0,0,3,0,0,1,1,1,0.5,1);
 
 DROP TABLE IF EXISTS "buffer_configs";
 CREATE TABLE buffer_configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -105,6 +107,19 @@ CREATE TABLE mock (
 	Maestro BOOLEAN
 );
 INSERT INTO "mock" VALUES(1,0,0,0,0,0);
+
+DROP TABLE IF EXISTS "scanning_measurements";
+CREATE TABLE scanning_measurements (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	time_UTC TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	waypoint_id INTEGER,
+	latitude DOUBLE,
+	longitude DOUBLE,
+	air_temperature DOUBLE,
+
+	-- not enforced: foreign_keys off (line 1)
+	FOREIGN KEY(waypoint_id) REFERENCES waypoints(id)
+);
 
 DELETE FROM sqlite_sequence;
 INSERT INTO "sqlite_sequence" VALUES('configs',1);
