@@ -28,6 +28,7 @@
 		thread
 		xmlparser
 		models
+		waypointrouting
 		logger	
 	)
 
