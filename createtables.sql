@@ -28,7 +28,7 @@ CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	scanning BOOLEAN
 );
 INSERT INTO "configs" VALUES(1, 4400,5300, 7000,5520, 45,5,
-	'/dev/ttyAMA0',4800,'/dev/ttyACM0',4,0,0,3,0,0,1,1,1,0.5,1);
+	'/dev/ttyAMA0',4800,'/dev/ttyACM0',4,0,0,3,0,0,0,0,1,0.5,1);
 
 DROP TABLE IF EXISTS "buffer_configs";
 CREATE TABLE buffer_configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,10 +39,11 @@ CREATE TABLE buffer_configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 INSERT INTO "buffer_configs" VALUES(1,5,100,10);
 
 DROP TABLE IF EXISTS "waypoints";
-CREATE TABLE waypoints (id INTEGER PRIMARY KEY, -- no autoincrement to ensure a correct order
+CREATE TABLE waypoints (id INTEGER PRIMARY KEY AUTOINCREMENT, -- no autoincrement to ensure a correct order
 	lat DOUBLE,
 	lon DOUBLE,
-	radius INTEGER
+	radius INTEGER,
+	harvested BOOLEAN
 );
 
 DROP TABLE IF EXISTS "datalogs";
@@ -106,7 +107,7 @@ CREATE TABLE mock (
 	Position BOOLEAN,
 	Maestro BOOLEAN
 );
-INSERT INTO "mock" VALUES(1,0,0,0,0,0);
+INSERT INTO "mock" VALUES(1,1,1,1,1,1);
 
 DROP TABLE IF EXISTS "scanning_measurements";
 CREATE TABLE scanning_measurements (
