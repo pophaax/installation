@@ -29,7 +29,8 @@
 		xmlparser
 		models
 		waypointrouting
-		logger	
+		logger
+		utility
 	)
 
 	# Terminal colors
