@@ -46,6 +46,16 @@ CREATE TABLE waypoints (id INTEGER PRIMARY KEY AUTOINCREMENT, -- no autoincremen
 	harvested BOOLEAN
 );
 
+DROP TABLE IF EXISTS "waypoint_index";
+CREATE TABLE waypoint_index (
+	id INTEGER PRIMARY KEY,
+	i INTEGER,
+	j INTEGER,
+
+	-- not enforced: foreign_keys off (line 1)
+	FOREIGN KEY(id) REFERENCES waypoints(id)
+);
+
 DROP TABLE IF EXISTS "datalogs";
 CREATE TABLE datalogs (id INTEGER PRIMARY KEY, -- remove log after sync to minimize db size
 	gps_time TIMESTAMP,
@@ -112,8 +122,10 @@ INSERT INTO "mock" VALUES(1,1,1,1,1,1);
 DROP TABLE IF EXISTS "scanning_measurements";
 CREATE TABLE scanning_measurements (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	time_UTC TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	waypoint_id INTEGER,
+	i INTEGER,
+	j INTEGER,
+	time_UTC TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	latitude DOUBLE,
 	longitude DOUBLE,
 	air_temperature DOUBLE,
