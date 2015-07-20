@@ -56,6 +56,15 @@ CREATE TABLE waypoint_index (
 	FOREIGN KEY(id) REFERENCES waypoints(id)
 );
 
+DROP TABLE IF EXISTS "waypoint_stationary";
+CREATE TABLE waypoint_stationary (
+	id INTEGER PRIMARY KEY,
+	time INTEGER,
+
+	-- not enforced: foreign_keys off (line 1)
+	FOREIGN KEY(id) REFERENCES waypoints(id)
+);
+
 DROP TABLE IF EXISTS "datalogs";
 CREATE TABLE datalogs (id INTEGER PRIMARY KEY, -- remove log after sync to minimize db size
 	gps_time TIMESTAMP,
@@ -129,16 +138,6 @@ CREATE TABLE scanning_measurements (
 	latitude DOUBLE,
 	longitude DOUBLE,
 	air_temperature DOUBLE,
-
-	-- not enforced: foreign_keys off (line 1)
-	FOREIGN KEY(waypoint_id) REFERENCES waypoints(id)
-);
-
-DROP TABLE IF EXISTS "timed_waypoint";
-CREATE TABLE timed_waypoint (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	waypoint_id INTEGER,
-	time INTEGER,
 
 	-- not enforced: foreign_keys off (line 1)
 	FOREIGN KEY(waypoint_id) REFERENCES waypoints(id)
