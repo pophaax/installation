@@ -134,6 +134,16 @@ CREATE TABLE scanning_measurements (
 	FOREIGN KEY(waypoint_id) REFERENCES waypoints(id)
 );
 
+DROP TABLE IF EXISTS "timed_waypoint";
+CREATE TABLE timed_waypoint (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	waypoint_id INTEGER,
+	time INTEGER,
+
+	-- not enforced: foreign_keys off (line 1)
+	FOREIGN KEY(waypoint_id) REFERENCES waypoints(id)
+);
+
 DELETE FROM sqlite_sequence;
 INSERT INTO "sqlite_sequence" VALUES('configs',1);
 COMMIT;
