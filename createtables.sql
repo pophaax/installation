@@ -91,7 +91,8 @@ CREATE TABLE datalogs (id INTEGER PRIMARY KEY, -- remove log after sync to minim
 	wpt_cur INTEGER,
 	cps_head INTEGER,
 	cps_pitch INTEGER,
-	cps_roll INTEGER
+	cps_roll INTEGER,
+	twd_calc DOUBLE
 );
 
 -- only used in DBHandler::getLogs commented code, remove?
