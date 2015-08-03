@@ -9,8 +9,10 @@ CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	rc_cmd_xtrm INTEGER,
 	rc_cmd_mid INTEGER,
 
-	cc_ang_tack INTEGER,
-	cc_ang_sect INTEGER,
+	cc_tack_ang INTEGER,
+	cc_tack_max_ang INTEGER,
+	cc_tack_min_spd DOUBLE,
+	cc_ang_sect INTEGER,	
 
 	ws_port VARCHAR,
 	ws_baud INTEGER,
@@ -28,7 +30,7 @@ CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	scanning BOOLEAN,
 	wp_inner_radius_ratio DOUBLE
 );
-INSERT INTO "configs" VALUES(1, 4400,5300, 7000,5520, 45,5,
+INSERT INTO "configs" VALUES(1, 4400,5300, 7000,5520, 45,70, 0.5,5,
 	'/dev/ttyAMA0',4800,'/dev/ttyACM0',4,0,0,3,0,0,0,0,1,0.5,1,0.5);
 
 DROP TABLE IF EXISTS "buffer_configs";
