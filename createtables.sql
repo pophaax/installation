@@ -30,7 +30,7 @@ CREATE TABLE configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	scanning BOOLEAN,
 	wp_inner_radius_ratio DOUBLE
 );
-INSERT INTO "configs" VALUES(1, 4400,5300, 7000,5520, 45,70, 0.5,5,
+INSERT INTO "configs" VALUES(1, 4400,5300, 7000,5520, 45,60, 0.5,5,
 	'/dev/ttyAMA0',4800,'/dev/ttyACM0',4,0,0,3,0,0,0,0,1,0.5,1,0.5);
 
 DROP TABLE IF EXISTS "buffer_configs";
