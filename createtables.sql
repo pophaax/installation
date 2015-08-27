@@ -138,9 +138,9 @@ CREATE TABLE scanning_measurements (
 	waypoint_id INTEGER,
 	i INTEGER,
 	j INTEGER,
-	time_UTC TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	latitude DOUBLE,
-	longitude DOUBLE,
+	time_UTC TIMESTAMP, -- DEFAULT CURRENT_TIMESTAMP, -- this won't work, the pi does not know the time
+	latitude DOUBLE,							  -- use script to insert time from gps to pi, at startup,
+	longitude DOUBLE,							  -- or insert time with gpsmodel.time, as done with datalogs
 	air_temperature DOUBLE,
 
 	-- not enforced: foreign_keys off (line 1)
