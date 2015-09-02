@@ -39,7 +39,7 @@ CREATE TABLE buffer_configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	true_wind INTEGER,
 	windsensor INTEGER
 );
-INSERT INTO "buffer_configs" VALUES(1,5,100,10);
+INSERT INTO "buffer_configs" VALUES(1,1,100,1);
 
 DROP TABLE IF EXISTS "waypoints";
 CREATE TABLE waypoints (id INTEGER PRIMARY KEY AUTOINCREMENT, -- no autoincrement to ensure a correct order
