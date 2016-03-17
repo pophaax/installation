@@ -45,6 +45,7 @@ DROP TABLE IF EXISTS "waypoints";
 CREATE TABLE waypoints (id INTEGER PRIMARY KEY AUTOINCREMENT, -- no autoincrement to ensure a correct order
 	lat DOUBLE,
 	lon DOUBLE,
+	declination INTEGER,
 	radius INTEGER,
 	harvested BOOLEAN
 );
