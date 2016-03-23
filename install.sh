@@ -29,6 +29,7 @@
 		xmlparser
 		models
 		waypointrouting
+		windvanecontroller
 		logger
 		utility
 	)
