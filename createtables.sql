@@ -11,8 +11,8 @@ INSERT INTO "buffer_configs" VALUES(1,1,100,1);
 
 DROP TABLE IF EXISTS "waypoints";
 CREATE TABLE waypoints (id INTEGER PRIMARY KEY AUTOINCREMENT, -- no autoincrement to ensure a correct order
-	lat DOUBLE,
-	lon DOUBLE,
+	latitude DOUBLE,
+	longitude DOUBLE,
 	declination INTEGER,
 	radius INTEGER,
 	harvested BOOLEAN
