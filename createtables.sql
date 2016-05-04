@@ -257,7 +257,9 @@ CREATE TABLE waypoint_routing_config (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   radius_ratio DOUBLE,
   sail_adjust_time DOUBLE,
-  adjust_degree_limit DOUBLE
+  adjust_degree_limit DOUBLE,
+  max_command_angle DOUBLE,
+  rudder_speed_min DOUBLE
 );
 
 
@@ -283,7 +285,7 @@ INSERT INTO "rudder_servo_config" VALUES(1,4,0,0);
 INSERT INTO "sail_servo_config" VALUES(1,3,0,0);
 INSERT INTO "xbee_config" VALUES(1,0,0,0);
 INSERT INTO "sailing_robot_config" VALUES(1,1,0.5,0);
-INSERT INTO "waypoint_routing_config" VALUES(1,0.5,0.5,10);
+INSERT INTO "waypoint_routing_config" VALUES(1,0.5,0.5,10,90.0,1.0);
 INSERT INTO "wind_vane_config" VALUES(1,1,0,1.5);
 
 
