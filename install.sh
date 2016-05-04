@@ -10,6 +10,9 @@
 	# Installation directory
 	INSTALLATION_PATH=~/
 	
+        # Database path under installation dir
+	DB_PATH=dbhandler
+	
 	# Main repository
 	REPO_MAIN=sailingrobot
 	
@@ -87,7 +90,10 @@ opt_install ()
 		printf "$CLR_INFO\nDownloading $MODULE module into $CLR_DIR$INSTALLATION_PATH$REPO_MAIN/$MODULE/$CLR_INFO\n"
 		print_result "git clone https://github.com/pophaax/$MODULE"
 	done
-
+        cd $DB_PATH
+        printf "$CLR_INFO\nDownloading json from https://github.com/nlohmann into $CLR_DIR$INSTALLATION_PATH$REPO_MAIN/$DB_PATH/$CLR_INFO\n"
+		print_result "git clone https://github.com/nlohmann/json.git"
+        
 	printf "$CLR_ASK\nDo you wish to create a database?\n$CLR_OPT"
 	select option in "Yes" "No"
 	do
