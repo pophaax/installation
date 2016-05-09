@@ -156,7 +156,7 @@ DROP TABLE IF EXISTS "rudder_command_config";
 CREATE TABLE rudder_command_config (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   extreme_command INTEGER,
-  midships_command INTEGER
+  midship_command INTEGER
 );
 
 
