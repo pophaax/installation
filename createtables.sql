@@ -54,6 +54,16 @@ CREATE TABLE gps_datalogs (
 );
 
 
+-- -----------------------------------------------------
+-- Table pressuresensor_datalogs
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS "pressuresensor_datalogs";
+CREATE TABLE pressuresensor_datalogs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  pressure INTEGER
+);
+
 
 -- -----------------------------------------------------
 -- Table course_calculation_datalogs
@@ -103,7 +113,8 @@ DROP TABLE IF EXISTS "system_datalogs";
 CREATE TABLE system_datalogs (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   gps_id INTEGER,
-	course_calculation_id INTEGER,
+  course_calculation_id INTEGER,
+  pressuresensor_id INTEGER,
   windsensor_id INTEGER,
   compass_id INTEGER,
   sail_command_sail_state INTEGER,
@@ -123,19 +134,22 @@ CREATE TABLE system_datalogs (
     REFERENCES windsensor_datalogs (id),
   CONSTRAINT compass_id
     FOREIGN KEY (compass_id)
-    REFERENCES compass_datalogs (id)
+    REFERENCES compass_datalogs (id),
+  CONSTRAINT pressuresensor_id
+    FOREIGN KEY (pressuresensor_id)
+    REFERENCES pressuresensor_datalogs (id)
   );
 
-  
-CREATE TRIGGER remove_logs AFTER DELETE ON "system_datalogs"  
-BEGIN   
+
+CREATE TRIGGER remove_logs AFTER DELETE ON "system_datalogs"
+BEGIN
 
 DELETE FROM "gps_datalogs" WHERE ID = OLD.gps_id;
 DELETE FROM "course_calculation_datalogs" WHERE ID = OLD.course_calculation_id;
 DELETE FROM "compass_datalogs" WHERE ID = OLD.windsensor_id;
 DELETE FROM "windsensor_datalogs" WHERE ID = OLD.compass_id;
 
-END;  
+END;
 
 -- -----------------------------------------------------
 -- Table sail_command_config
@@ -331,11 +345,12 @@ CREATE TABLE mock (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	GPS BOOLEAN,
 	Windsensor BOOLEAN,
+	Pressure BOOLEAN,
 	Compass BOOLEAN,
 	Position BOOLEAN,
 	Maestro BOOLEAN
 );
-INSERT INTO "mock" VALUES(1,1,1,1,1,1);
+INSERT INTO "mock" VALUES(1,1,1,1,1,1,1);
 
 DROP TABLE IF EXISTS "scanning_measurements";
 CREATE TABLE scanning_measurements (
