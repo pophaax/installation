@@ -9,21 +9,21 @@
 
 	# Installation directory
 	INSTALLATION_PATH=~/
-	
+
         # Database path under installation dir
 	DB_PATH=dbhandler
-	
+
 	# Main repository
 	REPO_MAIN=sailingrobot
-	
+
 	# Module repositories to be downloaded
 	REPO_MODULES=(
-		ruddercommand 
-		sailcommand 
-		dbhandler 
-		CV7 
-		servocontroller 
-		gps 
+		ruddercommand
+		sailcommand
+		dbhandler
+		CV7
+		servocontroller
+		gps
 		coursecalculation
 		httpsync
 		tests
@@ -35,6 +35,7 @@
 		windvanecontroller
 		logger
 		utility
+		xbeerelay
 	)
 
 	# Terminal colors
@@ -70,10 +71,10 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 print_result()
 {
 	if $1
-	then 
+	then
 		printf "$CLR_OK"
 		printf "Success\n"
-	else 
+	else
 		printf "$CLR_ERR"
 		printf "Failed\n"
 	fi
@@ -122,7 +123,7 @@ opt_update ()
 	cd $INSTALLATION_PATH$REPO_MAIN
 	printf "$CLR_INFO\nUpdating $REPO_MAIN into $CLR_DIR$INSTALLATION_PATH$REPO_MAIN/$CLR_INFO\n"
 	print_result "git pull"
-	
+
 	for MODULE in ${REPO_MODULES[@]}
 	do
 		cd $MODULE
@@ -185,5 +186,3 @@ do
 done
 
 printf "$CLR_END\n"
-
-
