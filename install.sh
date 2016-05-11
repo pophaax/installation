@@ -93,7 +93,7 @@ opt_install ()
         cd $DB_PATH
         printf "$CLR_INFO\nDownloading json from https://github.com/nlohmann into $CLR_DIR$INSTALLATION_PATH$REPO_MAIN/$DB_PATH/$CLR_INFO\n"
 		print_result "git clone https://github.com/nlohmann/json.git"
-        
+    cd ..
 	printf "$CLR_ASK\nDo you wish to create a database?\n$CLR_OPT"
 	select option in "Yes" "No"
 	do
