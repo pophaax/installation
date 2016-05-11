@@ -247,7 +247,7 @@ CREATE TABLE xbee_config (
   send INTEGER,
   recieve INTEGER,
   send_logs INTEGER,
-  delay DOUBLE
+  delay INTEGER
 );
 
 
@@ -258,7 +258,7 @@ CREATE TABLE xbee_config (
 DROP TABLE IF EXISTS "httpsync_config";
 CREATE TABLE httpsync_config (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  delay DOUBLE
+  delay INTEGER
 );
 
 
