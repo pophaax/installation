@@ -148,6 +148,7 @@ DELETE FROM "gps_datalogs" WHERE ID = OLD.gps_id;
 DELETE FROM "course_calculation_datalogs" WHERE ID = OLD.course_calculation_id;
 DELETE FROM "compass_datalogs" WHERE ID = OLD.windsensor_id;
 DELETE FROM "windsensor_datalogs" WHERE ID = OLD.compass_id;
+DELETE FROM "pressuresensor_datalogs" WHERE ID = OLD.pressuresensor_id;
 
 END;
 
@@ -304,7 +305,7 @@ CREATE TABLE wind_vane_config (
 /*data for configs*/
 INSERT INTO "sail_command_config" VALUES(1, 4400,5300);
 INSERT INTO "rudder_command_config" VALUES(1,7000,5520);
-INSERT INTO "course_calculation_config" VALUES(1,45.0,60.0, 1,5.0);
+INSERT INTO "course_calculation_config" VALUES(1,45.0,60.0,1.0,5.0);
 INSERT INTO "windsensor_config" VALUES(1,'/dev/ttyS0',4800);
 INSERT INTO "maestro_controller_config" VALUES(1,'/dev/ttyACM0');
 INSERT INTO "rudder_servo_config" VALUES(1,4,0,0);
