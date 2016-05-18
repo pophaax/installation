@@ -1,13 +1,13 @@
 PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS "buffer_configs";
-CREATE TABLE buffer_configs (id INTEGER PRIMARY KEY AUTOINCREMENT,
+DROP TABLE IF EXISTS "buffer_config";
+CREATE TABLE buffer_config (id INTEGER PRIMARY KEY AUTOINCREMENT,
 	compass INTEGER,
 	true_wind INTEGER,
 	windsensor INTEGER
 );
-INSERT INTO "buffer_configs" VALUES(1,1,100,1);
+INSERT INTO "buffer_config" VALUES(1,1,100,1);
 
 DROP TABLE IF EXISTS "waypoints";
 CREATE TABLE waypoints (id INTEGER PRIMARY KEY AUTOINCREMENT, -- no autoincrement to ensure a correct order
