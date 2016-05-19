@@ -55,11 +55,11 @@ CREATE TABLE gps_datalogs (
 
 
 -- -----------------------------------------------------
--- Table pressuresensor_datalogs
+-- Table arduino_datalogs
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS "pressuresensor_datalogs";
-CREATE TABLE pressuresensor_datalogs (
+DROP TABLE IF EXISTS "arduino_datalogs";
+CREATE TABLE arduino_datalogs (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   pressure INTEGER
 );
@@ -114,7 +114,7 @@ CREATE TABLE system_datalogs (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   gps_id INTEGER,
   course_calculation_id INTEGER,
-  pressuresensor_id INTEGER,
+  arduino_id INTEGER,
   windsensor_id INTEGER,
   compass_id INTEGER,
   sail_command_sail_state INTEGER,
@@ -135,9 +135,9 @@ CREATE TABLE system_datalogs (
   CONSTRAINT compass_id
     FOREIGN KEY (compass_id)
     REFERENCES compass_datalogs (id),
-  CONSTRAINT pressuresensor_id
-    FOREIGN KEY (pressuresensor_id)
-    REFERENCES pressuresensor_datalogs (id)
+  CONSTRAINT arduino_id
+    FOREIGN KEY (arduino_id)
+    REFERENCES arduino_datalogs (id)
   );
 
 
@@ -148,7 +148,7 @@ DELETE FROM "gps_datalogs" WHERE ID = OLD.gps_id;
 DELETE FROM "course_calculation_datalogs" WHERE ID = OLD.course_calculation_id;
 DELETE FROM "compass_datalogs" WHERE ID = OLD.windsensor_id;
 DELETE FROM "windsensor_datalogs" WHERE ID = OLD.compass_id;
-DELETE FROM "pressuresensor_datalogs" WHERE ID = OLD.pressuresensor_id;
+DELETE FROM "arduino_datalogs" WHERE ID = OLD.arduino_id;
 
 END;
 
