@@ -61,7 +61,10 @@ CREATE TABLE gps_datalogs (
 DROP TABLE IF EXISTS "arduino_datalogs";
 CREATE TABLE arduino_datalogs (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  pressure INTEGER
+  pressure INTEGER,
+  rudder INTEGER,
+  sheet INTEGER,
+  current INTEGER
 );
 
 
