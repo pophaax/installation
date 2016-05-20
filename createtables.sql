@@ -50,7 +50,8 @@ CREATE TABLE gps_datalogs (
   longitude DOUBLE,
   speed DOUBLE,
   heading DOUBLE,
-  satellites_used INTEGER
+  satellites_used INTEGER,
+  route_started BOOLEAN
 );
 
 
