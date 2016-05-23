@@ -307,6 +307,15 @@ CREATE TABLE wind_vane_config (
   self_steering_interval DOUBLE
 );
 
+-- -----------------------------------------------------
+-- Table i2c_config
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS "i2c_config";
+CREATE TABLE i2c_config (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  loop_time DOUBLE
+);
+
 /*data for configs*/
 INSERT INTO "sail_command_config" VALUES(1, 4400,5300);
 INSERT INTO "rudder_command_config" VALUES(1,7000,5520);
@@ -320,6 +329,7 @@ INSERT INTO "httpsync_config" VALUES(1,0,1);
 INSERT INTO "sailing_robot_config" VALUES(1,1,0.5,0);
 INSERT INTO "waypoint_routing_config" VALUES(1,0.5,7,25,90.0,1.0);
 INSERT INTO "wind_vane_config" VALUES(1,1,0,1.5);
+INSERT INTO "i2c_config" VALUES(1, 0.1);
 
 
 -- only used in DBHandler::getLogs commented code, remove?
