@@ -318,7 +318,7 @@ INSERT INTO "sail_servo_config" VALUES(1,3,0,0);
 INSERT INTO "xbee_config" VALUES(1,0,0,0,400);
 INSERT INTO "httpsync_config" VALUES(1,0,1);
 INSERT INTO "sailing_robot_config" VALUES(1,1,0.5,0);
-INSERT INTO "waypoint_routing_config" VALUES(1,0.5,0.5,10,90.0,1.0);
+INSERT INTO "waypoint_routing_config" VALUES(1,0.5,7,25,90.0,1.0);
 INSERT INTO "wind_vane_config" VALUES(1,1,0,1.5);
 
 
@@ -349,12 +349,12 @@ CREATE TABLE state (id INTEGER PRIMARY KEY AUTOINCREMENT,
 DROP TABLE IF EXISTS "mock";
 CREATE TABLE mock (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	GPS BOOLEAN,
-	Windsensor BOOLEAN,
-	Pressure BOOLEAN,
-	Compass BOOLEAN,
-	Position BOOLEAN,
-	Maestro BOOLEAN
+	gps BOOLEAN,
+	windsensor BOOLEAN,
+	analog_arduino BOOLEAN,
+	compass BOOLEAN,
+	position BOOLEAN,
+	maestro BOOLEAN
 );
 INSERT INTO "mock" VALUES(1,1,1,1,1,1,1);
 
