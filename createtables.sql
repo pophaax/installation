@@ -252,7 +252,7 @@ CREATE TABLE xbee_config (
   send INTEGER,
   recieve INTEGER,
   send_logs INTEGER,
-  delay INTEGER
+  loop_time DOUBLE
 );
 
 
