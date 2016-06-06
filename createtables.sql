@@ -150,8 +150,8 @@ BEGIN
 
 DELETE FROM "gps_datalogs" WHERE ID = OLD.gps_id;
 DELETE FROM "course_calculation_datalogs" WHERE ID = OLD.course_calculation_id;
-DELETE FROM "compass_datalogs" WHERE ID = OLD.windsensor_id;
-DELETE FROM "windsensor_datalogs" WHERE ID = OLD.compass_id;
+DELETE FROM "compass_datalogs" WHERE ID = OLD.compass_id;
+DELETE FROM "windsensor_datalogs" WHERE ID = OLD.windsensor_id;
 DELETE FROM "arduino_datalogs" WHERE ID = OLD.arduino_id;
 
 END;
